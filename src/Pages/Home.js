@@ -1,49 +1,18 @@
-import React, { Component } from "react";
-import { Card, Container, CardDeck } from "react-bootstrap";
-import head from "../assets/head.png"
+import React from 'react'
+import {Col, Container} from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import CourseItem from "../components/CourseItem";
 
-export default class Header extends Component {
-    render() {
-        return( 
-            <Container>
-                <h2 className="text-center m-4">Наши преимущества</h2>
-                <CardDeck>
-                    <Card>
-                        <Card.Img
-                            variant="top"
-                            src="../assest/Group1.png"
-                        />
-                        <Card.Body>
-                            <Card.Title>Добро пожаловать</Card.Title>
-                            <Card.Text>Мы — каталог-отзовик курсов.</Card.Text>
-                           
-                        </Card.Body>
-                    </Card>
-                    <Card>
-                        <Card.Img
-                            variant="top"
-                            src="../assest/Group1.png"
-                        />
-                        <Card.Body>
-                            <Card.Title>Добро пожаловать</Card.Title>
-                            <Card.Text>Мы — каталог-отзовик курсов.</Card.Text>
-                           
-                        </Card.Body>
-                    </Card>
-                    <Card>
-                        <Card.Img
-                            variant="top"
-                            src="../assest/Group1.png"
-                        />
-                        <Card.Body>
-                            <Card.Title>Добро пожаловать</Card.Title>
-                            <Card.Text>Мы — каталог-отзовик курсов.</Card.Text>
-                           
-                        </Card.Body>
-                    </Card>
-                </CardDeck>
-            </Container>
+const Home = () => {
+  return (
+    <Container>
+      <Row className="mt-2">
+          <Col className={"d-flex justify-content-center mt-4"}>
+              <CourseItem/>
+          </Col>
+      </Row>
+    </Container>
+  );
+};
 
-        )
-    }
-}
+export default Home
