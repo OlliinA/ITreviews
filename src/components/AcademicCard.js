@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
+import {Container} from "react-bootstrap";
 
-const AcademicCard = () => {
+const Auth = () =>  {
     return (
-        <div>
-
-        </div>
-    );
+        <Container className="d-flex justify-content-center align-items-center">
+        </Container>
+    )
 };
 
-export default AcademicCard;
+export default Auth

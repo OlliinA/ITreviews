@@ -7,21 +7,23 @@ import Row from "react-bootstrap/Row";
 import {useHistory} from "react-router-dom"
 import {COURSE_ROUTE} from "../utils/consts";
 import logo from "../assets/Logo.png";
+import axios from "axios";
 
 const CourseItem = observer(() => {
-    const {course} = useContext(Context)
+    const {section} = useContext(Context)
+    console.log(section.sections)
     const history = useHistory()
 
     return (
         <Col className="d-flex justify-content-center" >
-            {course.types.map(type =>
+            {section.sections.map(section =>
                 <Card
-                    style={{ backgroundColor: type.color, width: 300,  height:250} }
-                    key={type.id}
-                    className={"align-items-center ml-5 text-white" }
+                    style={{  width: 300,  height:250} }
+                    key={section.id}
+                    className={"align-items-center ml-5" }
                     >
-                    {type.name}
-                    {course.courses.map(course =>
+                    {section.name}
+                    {section.courses.map(course =>
                         <NavLink
                             onClick={() => history.push(COURSE_ROUTE + '/' + course.id)}
                             key={course.id} course={course}

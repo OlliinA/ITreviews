@@ -1,10 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {Button, Container} from "react-bootstrap";
+import CreateCourse from "../components/CreateCourse";
 
 const Admin = () => {
+
+    const [courseVisible, setCourseVisible] = useState(false)
+
     return (
-        <div>
-            
-        </div>
+        <Container className="d-flex flex-column">
+            <Button
+                variant={"outline-dark"}
+                className="mt-4 p-2"
+                onClick={() =>  setCourseVisible(true)}
+            >
+                Добавить тип
+            </Button>
+            <CreateCourse show={courseVisible} onHide={() => setCourseVisible(false)}/>
+        </Container>
     );
 };
 

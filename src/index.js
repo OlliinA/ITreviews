@@ -6,11 +6,15 @@ import CourseStore from "./store/CourseStore";
 
 export const Context = createContext(null)
 
+console.log()
+
 ReactDOM.render(
     <Context.Provider value={{
         user: new UserStr(),
+        section: new CourseStore(),
+        academic: new CourseStore(),
         course: new CourseStore(),
-        academic: new CourseStore()
+        review : new CourseStore()
 
     }}>
         <App />

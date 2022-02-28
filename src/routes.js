@@ -1,8 +1,14 @@
-import { ADMIN_ROUTE, COURSE_ROUTE, FEEDBACK_ROUTE, HOME_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, REVIEWS_ROUTE } from "./utils/consts";
+import {
+    ADMIN_ROUTE,
+    COURSE_ROUTE,
+    HOME_ROUTE,
+    LOGIN_ROUTE,
+    REGISTRATION_ROUTE,
+    REVIEWS_ROUTE
+} from "./utils/consts";
 import Admin from "./pages/Admin";
-import Auth from "./pages/Auth";
+import Auth from "./components/Auth";
 import Course from "./pages/Course";
-import Feedback from "./pages/Feedback";
 import Reviews from "./pages/Reviews";
 import Home from "./pages/Home";
 
@@ -10,10 +16,6 @@ export const authRoutes =[
     {
         path: ADMIN_ROUTE,
         Component: Admin
-    },
-    {
-        path: FEEDBACK_ROUTE,
-        Component: Feedback
     }
 
 ]
