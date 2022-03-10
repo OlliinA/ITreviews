@@ -14,6 +14,7 @@ const Home = observer(() => {
     const {section} = useContext(Context)
 
     useEffect(() => {
+        fetchTypes().then(data => section.setCategories(data))
         fetchTypes().then(data => section.setSections(data))
     }, [])
   return (
@@ -21,7 +22,7 @@ const Home = observer(() => {
         <UnderHeader/>
         <Benefit/>
         <Rectangle/>
-        <CourseDirections/>
+        <CourseItem/>
     </div>
   );
 });

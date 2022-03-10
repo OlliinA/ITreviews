@@ -23,7 +23,7 @@ export default function StarRating({ numTotalStars = 5, initialRating = 0 }) {
                         handleHover={() => setNumHoveringStars(i + 1)}
                     />)}
             </div>
-            <div className="label ml-2"> Оценка {numSelectedStars}</div>
+            <div className="label d-flex justify-content-center"> Оценка {numSelectedStars}</div>
         </div>
     );
 }

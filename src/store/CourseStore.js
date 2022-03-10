@@ -1,6 +1,13 @@
 import {makeAutoObservable} from "mobx";
 
 export default class CourseStore {
+    get categories() {
+        return this._categories;
+    }
+
+    setCategories(value) {
+        this._categories = value;
+    }
 
     get reviews() {
         return this._reviews;
@@ -12,11 +19,14 @@ export default class CourseStore {
 
     constructor() {
         this._courses =[
-            {id: 1, name: 'Разработка игр' },
-            {id: 2, name: 'Разработка игр на Unity'},
+            {id:1, name: 'Skillbox', link: 'skillbox.ru', deadline: '2 месяца', price: '50000$', color: "#4110FF"},
+
         ]
         this._sections = [
-            {id: 1, name: 'Разработка игр' }
+
+        ]
+        this._categories = [
+
         ]
         this._academics = [
             {id:1, name: 'Skillbox', link: 'skillbox.ru', deadline: '2 месяца', price: '50000$', color: "#4110FF"},
@@ -26,6 +36,13 @@ export default class CourseStore {
 
         this._reviews = [
             {id:1, name: 'Иван', comment: "Познакомитесь с синтаксисом Python, узнаете правила хорошего тона в программировании и научитесь писать лаконичный код, понятный вам и другим разработчикам.", ico: "../assets/Ivan.png", color: "#4110FF"},
+        ]
+
+        this._colour = [
+            {id:1, color: "#4110FF"},
+            {id:2, color: "#B310FF"},
+            {id:3, color: "#B310FF"}
+
         ]
 
 
@@ -63,4 +80,11 @@ export default class CourseStore {
     }
 
 
+    get colour() {
+        return this._colour;
+    }
+
+    set colour(value) {
+        this._colour = value;
+    }
 }

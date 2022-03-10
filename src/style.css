@@ -1,136 +1,57 @@
-.uhead {
-    display: grid;
-    grid-template-areas:
-    "our_text_a men_img_a";
-    grid-template-columns: 50% 50%;
-    grid-template-rows:100%;
+.text_nav{
+    color:white;
+    font-family: "Montserrat Medium";
 }
-
-.men_img{
-    grid-area: men_img_a;
-}
-
-.our_text{
-    grid-area: our_text_a;
-    text-align: center;
-    display: flex;
-
-}
-.our_text_1{
-    margin: auto;
-}
-.my_card{
-    display: flex;
-}
-.my_card_1{
-    margin: auto;
-}
-
-.container_for_card{
-    display: grid;
-    grid-template-areas:
-    "card_play card_language"
-    "card_frame card_dir";
-    grid-template-columns:50% 50%;
-    grid-template-rows:50% 50%;
-    place-items: center;
-}
-.card_play{
-    grid-area: card_play;
-    display: grid;
-}
-.card_play_1{
-    justify-self : end;
-}
-.card_language{
-    grid-area: card_language;
-}
-.card_frame{
-    grid-area: card_frame;
-    display: grid;
-}
-.card_frame_1{
-    justify-self : end;
-}
-.card_dir{
-    grid-area: card_dir;
-}
-.block_about{
-    display: grid;
-    grid-template-areas:
-    "block_our_plus"
-    "block_we_are"
-    "block_with_img_we_are";
-}
-.block_our_plus{
-    grid-area: block_our_plus;
-    display: flex;
-    height: 9vw;
-}
-.block_we_are{
-    grid-area: block_we_are;
-    display: flex;
-    height: 7vw ;
-}
-.block_with_img_we_are{
-    grid-area: block_with_img_we_are;
-    display: grid;
-    grid-template-areas:
-    "welcome rev best";
-    height: 17vw;
-    justify-items: center;
-
-}
-.welcome{
-    grid-area: welcome;
-}
-.rev{
-    grid-area: rev;
-}
-.best{
-    grid-area: best;
+.button_from_nav{
+    height: 100%;
 }
 .our_plus{
     font-family: "Montserrat Bold";
     color: black;
-    font-size:2vw;
-    grid-area: our_plus;
-    height: 5vw;
+    font-size: calc(0.5rem + 1.8vw);
     text-align: center;
-    margin: auto;
 }
 .we_are{
     color: #999999;
     font-family: "Montserrat Regular";
-    font-size: 1vw;
-    grid-area: we_are;
+    font-size: calc(0.5rem + 0.7vw);
     text-align: center;
-    margin: auto;
-    height: 7vw;
+}
+.img_benefit{
+    max-width: 100%;
+}
+.div_we_are{
+    height: 10vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .text_1{
     font-size:2.8vw;
     color: white;
     font-family: "Montserrat ExtraBold";
+    text-align: center;
+    margin: 0;
+    padding-top: 4vw;
 }
 .text_2{
-    font-size:1vw;
+    font-size:1.2vw;
     color: white;
     font-family: "Montserrat Black";
-
-
+    text-align: center;
+    margin: 0;
 }
 .card_text{
     color: white;
     font-family: "Montserrat Medium";
-    font-size:1vw;
+    font-size:1.2vw;
     text-align: center;
 }
 .card_text_title{
     color: white;
     font-family: "Montserrat Black";
-    font-size:1.3vw;
+    font-size:1.5vw;
     text-align: center;
 }
 .dropdown_card_text{
@@ -140,16 +61,44 @@
 .dropdown_card{
     text-align: center;
 }
+.container_dir_cource{
+    background: linear-gradient(to right, #4844DE, #5F12D0)
+}
 .dir_cource {
     font-family: "Montserrat SemiBold";
     font-size:2.5vw;
+    text-align: center;
+    color: white;
 }
 .e_mail{
     font-family: "Montserrat SemiBold";
 }
+img{
+    max-width: 100%;
+}
+.ch_dir{
+    font-family: "Montserrat Medium";
+    font-size: 1vw;
+    border-radius: 50px;
+}
+.button_ch_dir{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 4vw;
+    padding-top: 1vw;
+}
+.card_with_dir{
+    width: 22vw;
+    height: 22vw;
+}
+.card_img{
+    width: 5vw;
+    height: 5vw;
+    margin:auto;
+}
 @font-face {
-font-family: "Montserrat ExtraBold";
-src: url("../fonts/Montserrat-ExtraBold.ttf") format("truetype");
+    font-family: "Montserrat ExtraBold";
+    src: url("../fonts/Montserrat-ExtraBold.ttf") format("truetype");
     font-style: normal;
     font-weight: normal;
 }
