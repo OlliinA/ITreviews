@@ -6,9 +6,7 @@ import Row from "react-bootstrap/Row";
 import {useHistory} from "react-router-dom"
 import {COURSE_ROUTE} from "../utils/consts";
 import play from "../assets/premium-icon-game-control-4315514 1.svg";
-import language from "../assets/premium-icon-programming-language-1723208  1.svg";
-import frame from "../assets/free-icon-framework-3524995 1.svg";
-import directrions from "../assets/stacked-files 1.svg";
+
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -40,15 +38,15 @@ const CourseItem = observer(() => {
                             src={play} alt="play" className='mt-2'
                         />
                         <div className={"mt-1 mb-3"}>{section.section.name}</div>
-                        {section.categories.map(categorie =>
-                            <NavLink
-                                onClick={() => history.push(COURSE_ROUTE + '/' + categorie.id)}
-                                key={categorie.id}
-                                className={"mt-2 text-white"}
-                            >
-                                {categorie.name}
-                            </NavLink>
-                        )}
+                            {section.categories.map(categorie =>
+                                <NavLink
+                                    onClick={() => history.push(COURSE_ROUTE + '/' + categorie.id)}
+                                    key={categorie.id}
+                                    className={"mt-2 text-white"}
+                                >
+                                    {categorie.name}
+                                </NavLink>
+                        )}}
                     </Card>
                 )}
         </Col>

@@ -22,7 +22,7 @@ const Home = observer(() => {
         <UnderHeader/>
         <Benefit/>
         <Rectangle/>
-        <CourseItem/>
+        <CourseDirections/>
     </div>
   );
 });
