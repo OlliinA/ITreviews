@@ -91,10 +91,7 @@ img{
     width: 22vw;
     height: 22vw;
 }
-.card_img{
-    width: 5vw;
-    height: 5vw;
-}
+
 @font-face {
     font-family: "Montserrat ExtraBold";
     src: url("../fonts/Montserrat-ExtraBold.ttf") format("truetype");
