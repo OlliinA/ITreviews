@@ -42,6 +42,15 @@
     text-align: center;
     margin: 0;
 }
+.text_3 {
+    font-size: 25px;
+    color: #2F2F2F;
+    font-family: "Montserrat ExtraBold";
+    text-align: center;
+    margin: 0;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+}
 .card_text{
     color: white;
     font-family: "Montserrat Medium";

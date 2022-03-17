@@ -51,12 +51,7 @@ const CourseDirections = observer(() => {
                             <img style={{ width: 70, height: 70}} src={play} alt="play" className='card_img mt-2'/>
                             <div className='card_text_title '> {section.section.name} </div>
                             <div className='card-body'>
-                                <Carousel slide={false} style={{paddingLeft:40, paddingRight:50, paddingBottom: 50, paddingTop:20}} >
-                                    <Carousel.Item >
-                                        {getCategories(section, history)}
-                                    </Carousel.Item>
-
-                                </Carousel>
+                                {getCategories(section, history)}
                             </div>
                         </Card>
                     )}
@@ -95,11 +90,7 @@ const CourseDirections = observer(() => {
                                 <img style={{ width: 70, height: 70}} src={frame} alt="play" className='card_img mt-2'/>
                                 <div className='card_text_title '> {section.section.name} </div>
                                 <div className='card-body'>
-                                    <Carousel slide={false} style={{paddingLeft:50, paddingRight:50, paddingBottom: 90, paddingTop:20}} >
-                                        <Carousel.Item>
-                                            {getFram(section, history)}
-                                        </Carousel.Item>
-                                    </Carousel>
+                                    {getFram(section, history)}
                                 </div>
                             </Card>
                         )}

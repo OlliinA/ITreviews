@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Col, Container} from "react-bootstrap";
-import men from "../assets/men.svg";
+import men from "../assets/m.svg";
 import "../style.css";
 import Row from "react-bootstrap/Row";
 

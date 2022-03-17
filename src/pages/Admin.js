@@ -13,7 +13,7 @@ const Admin = () => {
                 className="mt-4 p-2"
                 onClick={() =>  setCourseVisible(true)}
             >
-                Добавить тип
+                Добавить курс
             </Button>
             <CreateCourse show={courseVisible} onHide={() => setCourseVisible(false)}/>
         </Container>
