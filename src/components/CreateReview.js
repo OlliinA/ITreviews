@@ -14,13 +14,14 @@ const CreateReview = ({show, onHide}) => {
                 style={{backgroundColor: 'rgba(0,0,0,0.7)'}}
             >
                 <Modal.Header
-                    style={{backgroundColor: "#E5E5E5", height:60}}
+                    className="text_3"
+                    style={{backgroundColor: "#E5E5E5"}}
                     closeButton>
-                    <Col className="d-flex justify-content-center">
+                    <Col className=" mt-2 mb-2 d-flex justify-content-center">
                         <Modal.Title>Оставить отзыв</Modal.Title>
                     </Col>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body className = {"mb-2"}>
                     <Form>
                         <Form.Control
                             style={{borderRadius: 25}}
@@ -51,28 +52,28 @@ const CreateReview = ({show, onHide}) => {
                             </Col>
                         </Row>
                         <Col className={"mt-3 d-flex justify-content-center"}> Достоинства</Col>
-                        <textarea className={"mt-3"} style={{width:470}}></textarea>
+                        <textarea className={"mt-3"} style={{width: 470}}/>
                         <Col className={"mt-3 d-flex justify-content-center"}> Недостатки</Col>
-                        <textarea className={"mt-3"} style={{width:470}}></textarea>
+                        <textarea className={"mt-3"} style={{width: 470}}/>
                         <Col className={"mt-3 d-flex justify-content-center"}> Комментарий</Col>
-                        <textarea className={"mt-3"} style={{width:470}}></textarea>
+                        <textarea className={"mt-3"} style={{width: 470}}/>
                         <Col className={"mt-2 d-flex justify-content-center"}><StarRating/></Col>
-                        <Row>
+                        <Row className= {"mt-2"}>
                             <Col>
-                        <Form.Check
-                            className={"mt-2"}
-                            type={"checkbox"}
-                            label={"Нашёл работу"}
-                            id={`disabled-default-${"checkbox"}`}
-                        />
-                        </Col>
+                                <Form.Check
+                                    className={"mt-2 ml-2"}
+                                    type={"checkbox"}
+                                    label={"Нашёл работу"}
+                                    id={`disabled-default-${"checkbox"}`}
+                                />
+                            </Col>
                             <Col>
-                        <Form.Check
-                            className={"mt-2"}
-                            type={"checkbox"}
-                            label={"Был ментр"}
-                            id={`disabled-default-${"checkbox"}`}
-                        />
+                                <Form.Check
+                                    className={"mt-2"}
+                                    type={"checkbox"}
+                                    label={"Был ментр"}
+                                    id={`disabled-default-${"checkbox"}`}
+                                />
                             </Col>
                         </Row>
                     </Form>

@@ -12,8 +12,9 @@ const Course = () =>{
   const {academic} = useContext(Context)
   return (
   <Container className={"mt-4 "} >
+
     <Col className={"mr-3"}>
-      <h3>{course.name} </h3>
+      <p>{course.name} </p>
     </Col>
     <Col>
       {academic.academics.map(academic =>
