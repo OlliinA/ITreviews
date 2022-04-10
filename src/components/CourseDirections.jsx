@@ -35,6 +35,14 @@ const getNCategories = ( section , history ) => {
     }
     return content;
 };
+const getLastCategories = ( section , history ) => {
+    let content = [];
+    for (let i = 7; i < 8; i++) {
+        const item = section.categories[i];
+        content.push(<NavLink onClick={() => history.push(COURSE_ROUTE + '/' + item.id)} key={item.id}><p className="card_text mb-2">{item.name}</p></NavLink>);
+    }
+    return content;
+};
 
 const CourseDirections = observer(() => {
     const {section} = useContext(Context)
@@ -48,7 +56,7 @@ const CourseDirections = observer(() => {
                     .map(section =>
                         <Card className='h-100 w-80  mr-md-2 align-items-center' style={{backgroundColor:"#3B1966",marginLeft: "auto",
                             marginRight:"auto",  borderRadius: 25}}>
-                            <img style={{ width: 70, height: 70}} src={play} alt="play" className='card_img mt-2'/>
+                            <img style={{ width: 70, height: 70}} src={play} alt="play" className='card_img mt-4'/>
                             <div className='card_text_title '> {section.section.name} </div>
                             <div className='card-body'>
                                 {getCategories(section, history)}
@@ -72,6 +80,9 @@ const CourseDirections = observer(() => {
                                         </Carousel.Item>
                                         <Carousel.Item>
                                             {getNCategories(section, history)}
+                                        </Carousel.Item>
+                                        <Carousel.Item>
+                                            {getLastCategories(section, history)}
                                         </Carousel.Item>
                                     </Carousel>
                                 </div>

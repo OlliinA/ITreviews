@@ -1,27 +1,34 @@
 import {$authHost, $host} from "./index";
-import jwt_decode from "jwt-decode";
 
-export const createType = async (type) => {
-    const {data} = await $authHost.post('api/type', type)
+export const fetchSection = async () => {
+    const {data} = await $host.get('api/section')
+    return data
+}
+export const fetchAcademy = async (id) => {
+    const {data} = await $host.get('api/academy/page/' + id +'?page=0&size=2')
+    return data
+}
+export const fetchAllAcademy = async () => {
+    const {data} = await $host.get('api/academy/')
     return data
 }
 
-export const fetchTypes = async () => {
-    const {data} = await $host.get('section')
+export const fetchOneCategory = async (id) => {
+    const {data} = await $host.get('api/category/' + id)
+    return data
+}
+export const fetchAllClass = async () => {
+    const {data} = await $host.get('api/class/admin')
+    return data
+}
+export const fetchReview = async (id) => {
+    const {data} = await $host.get('api/class/reviews/' + id)
+    return data
+}
+export const createReview = async (review) => {
+    const {data} = await $authHost.post('api/review', review)
     return data
 }
 
-export const createCourses = async (course) => {
-    const {data} = await $authHost.post('api/course', course)
-    return data
-}
 
-export const fetchCourses = async () => {
-    const {data} = await $host.get('api/course', )
-    return data
-}
 
-export const createDevice = async (device) => {
-    const {data} = await $authHost.post('api/device', device)
-    return data
-}

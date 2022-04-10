@@ -1,6 +1,6 @@
 import {
     ADMIN_ROUTE,
-    COURSE_ROUTE,
+    COURSE_ROUTE, FEEDBACK_ROUTE,
     HOME_ROUTE,
     LOGIN_ROUTE,
     REGISTRATION_ROUTE,
@@ -11,6 +11,7 @@ import Auth from "./components/Auth";
 import Course from "./pages/Course";
 import Reviews from "./pages/Reviews";
 import Home from "./pages/Home";
+import Feedback from "./pages/Feedback";
 
 export const authRoutes =[
     {
@@ -41,6 +42,10 @@ export const publicRoutes = [
     {
         path: REVIEWS_ROUTE + '/:id',
         Component: Reviews
+    },
+    {
+        path: FEEDBACK_ROUTE,
+        Component: Feedback
     }
 
 ]
