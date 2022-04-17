@@ -3,65 +3,40 @@ import {Col, Dropdown, Form, Modal} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import {Context} from "../index";
 import Row from "react-bootstrap/Row";
-import axios, * as others from 'axios';
+import axios  from 'axios';
 import StarRating from "./StarRating";
 import {createReview, fetchAllClass} from "../http/reviewAPI";
 
 const CreateReview = ({show, onHide}) => {
     const {review} = useContext(Context)
-    const url = "http://192.168.99.100:8080/api/review"
-    const [info, setInfo] = useState(
-    {beginDate: '', endDate: '', minuses: '', comment: '', pluses: '', employed: '', date: '', mark: '', active: '', classId: ''}
-    )
+    const [beginDate, setBeginDate] = useState('')
+    const [endDate, setEndDate] = useState('')
+    const [minuses, setMinuses] = useState('minus')
+    const [pluses, setPluses] = useState('plus')
+    const [comment, setComment] = useState('comment')
+    const [mentor, setMentor] = useState(true)
+    const [employed, setEmployed] = useState(true)
+    const [date] = useState(Date.now())
+    const [mark, setMark] = useState(5)
+    const [classId, setClassId] = useState(1)
+    const [userId, setUserId] = useState(1)
 
-    function handle(e){
-        const newData = {...info}
-        newData[e.target.id] = e.target.value
-        setInfo(newData)
-        console.log(newData)
-
-    }
-    function submit(e){
+    const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(url,{beginDate: info.beginDate,
-                        endDate: info.endDate,
-                        minuses: info.minuses,
-                        comment: info.comment,
-                        pluses: info.pluses,
-                        employed: info.employed,
-                        date: info.date,
-                        mark: info.mark,
-                        active: info.active,
-                        classId: info.classId
-        })
-        .then(res =>{
-            console.log(res.data)
+        const info = {beginDate, endDate, minuses, pluses, comment, mentor, employed, date, mark, classId, userId}
+        fetch('http://192.168.99.100:8080/api/review', {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(info)
+        }).then(() =>{
+            console.log('new review added')
         })
     }
+
     useEffect(() => {
         fetchAllClass().then(data => review.setCategory(data))
     }, [])
 
-
-    const addInfo = () => {
-        setInfo([...info, {beginDate: '1', endDate: '', minuses: '', comment: '', pluses: '', employed: '', date: '', mark: '', active: '', classId: ''}])
-        console.log(info)
-    }
-    const addReview = () => {
-        // const formData = new FormData()
-        // formData.append('beginDate', beginDate)
-        // formData.append('endDate', endDate)
-        // formData.append('minuses', minuses)
-        // formData.append('comment', pluses)
-        // formData.append('mentor', mentor)
-        // formData.append('employed', employed)
-        // formData.append('date', date)
-        // formData.append('mark', mark)
-        // formData.append('active', active)
-        // formData.append('classId', classId)
-        addInfo()
-        createReview(info).then(data => onHide())
-    }
     return (
         <Modal
             show={show}
@@ -96,20 +71,22 @@ const CreateReview = ({show, onHide}) => {
                         <Col>
                             <Form.Control
                                 style={{borderRadius: 25, borderColor: "lightgray", backgroundImage: "none"}}
-                                onChange={(e) => handle(e)}
-                                value={info.beginDate}
-                                className={"ml-1 mt-2"}
+                                required
+                                value={beginDate}
+                                onChange={(e) => setBeginDate(e.target.value)}
+                                className={"ml-3 mt-2"}
                                 placeholder={"От"}
                                 type={"date"}
 
                             />
                         </Col>
-                        <Col className={" mt-3"}>—</Col>
+                        <Col className={" mt-3 ml-4"}>—</Col>
                         <Col>
                             <Form.Control
                                 style={{borderRadius: 25, borderColor: "lightgray", backgroundImage: "none"}}
-                                onChange={(e) => handle(e)}
-                                value={info.endDate}
+                                required
+                                value={endDate}
+                                onChange={(e) => setEndDate(e.target.value)}
                                 className={" mt-2"}
                                 placeholder={""}
                                 type={"date"}
@@ -121,8 +98,9 @@ const CreateReview = ({show, onHide}) => {
                     <Row>
                         <Form.Group as={Col} md="4" controlId="validationCustom01">
                             <Form.Control
-                                onChange={(e) => handle(e)}
-                                value={info.pluses}
+                                required
+                                value={pluses}
+                                onChange={(e) => setPluses(e.target.value)}
                                 type="text"
                                 style={{width:470}}
                                 as="textarea" rows={3}
@@ -133,8 +111,9 @@ const CreateReview = ({show, onHide}) => {
                     <Row>
                         <Form.Group as={Col} md="4" controlId="validationCustom02">
                             <Form.Control
-                                value={info.minuses}
-                                onChange={(e) => handle(e)}
+                                required
+                                value={minuses}
+                                onChange={(e) => setMinuses(e.target.value)}
                                 type="text"
                                 style={{width:470}}
                                 as="textarea" rows={3}
@@ -145,8 +124,9 @@ const CreateReview = ({show, onHide}) => {
                     <Row>
                         <Form.Group as={Col} md="4" controlId="validationCustom02">
                             <Form.Control
-                                value={info.comment}
-                                onChange={(e) => handle(e)}
+                                required
+                                value={comment}
+                                onChange={(e) => setComment(e.target.value)}
                                 type="text"
                                 style={{width:470}}
                                 as="textarea" rows={3}
@@ -181,7 +161,7 @@ const CreateReview = ({show, onHide}) => {
                     {/*    <Button type="submit"  style={{borderRadius: 25, backgroundColor: '#4985FF'}}*/}
                     {/*            variant="primary" onClick={addReview}>Отправить</Button>*/}
                     {/*</Col>*/}
-                    <Button variant="outline-success" style={{borderRadius: 25, backgroundColor: '#4985FF'}} onClick={(e) => submit(e)} variant="primary" >Добавить</Button>
+                    <Button  style={{borderRadius: 25, backgroundColor: '#4985FF'}} onClick={handleSubmit} variant="primary" >Добавить</Button>
                 </Form>
             </Modal.Body>
             <Modal.Footer>

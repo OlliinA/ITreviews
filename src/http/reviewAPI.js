@@ -25,8 +25,8 @@ export const fetchReview = async (id) => {
     const {data} = await $host.get('api/class/reviews/' + id)
     return data
 }
-export const createReview = async (review) => {
-    const {data} = await $authHost.post('api/review', review)
+export const createReview = async () => {
+    const {data} = await $authHost.post('api/review')
     return data
 }
 
