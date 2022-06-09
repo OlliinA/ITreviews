@@ -1,16 +1,55 @@
-import React from 'react'
-import {Container, Form, Modal} from "react-bootstrap";
-import Card from "react-bootstrap/Card";
+import React, {useContext, useState} from 'react'
+import {Form, Modal} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import "../style.css";
-import {NavLink, useLocation} from "react-router-dom";
-import {LOGIN_ROUTE, REGISTRATION_ROUTE} from "../utils/consts";
+import {NavLink, useHistory, useLocation} from "react-router-dom";
+import {HOME_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE} from "../utils/consts";
+import {Context} from "../index";
+import {login, registration} from "../http/userAPI";
 
 const Auth = ({show, onHide}) =>  {
+
+    const {user} = useContext(Context)
     const location = useLocation()
+    const history = useHistory()
     const isLogin = location.pathname === LOGIN_ROUTE
-    console.log(location)
+    const [validated, setValidated] = useState(false);
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const click = async () => {
+        try {
+            let data;
+            if (isLogin) {
+                data = await login(email, password);
+                console.log(data)
+            } else {
+                data = await registration( email, password);
+                console.log(data)
+            }
+            user.setUser(user)
+            user.setIsAuth(true)
+
+        } catch (e) {
+            alert(e.response.data.message)
+        }
+
+    }
+
+
+    const handleSubmit = (event) => {
+
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        setValidated(true);
+    };
+
     return (
         <Modal
             show={show}
@@ -22,19 +61,25 @@ const Auth = ({show, onHide}) =>  {
                 <h2 className="m-auto text_3">{isLogin ? 'Авторизация' : 'Регистрация'}</h2>
             </Modal.Header>
             <Modal.Body>
-                <Form className="d-flex flex-column "
-                      style={{ borderRadius:25}}
-                >
-                    <Form.Control
-                        style={{ borderRadius:25}}
-                        className="mt-4"
-                        placeholder="Эл.почта"
-                    />
-                    <Form.Control
-                        style={{ borderRadius:25}}
-                        className="mt-4"
-                        placeholder="Пароль"
-                    />
+                <Form noValidate validated={validated} onSubmit={handleSubmit} className="d-flex flex-column">
+                    <Form.Group controlId="validationCustom01">
+                        <Form.Control
+                            required
+                            className="mt-3"
+                            style={{ borderRadius:25}}
+                            placeholder="Эл.почта"
+                            type="text"
+                        />
+                    </Form.Group>
+                    <Form.Group controlId="validationCustom02">
+                        <Form.Control
+                            required
+                            className="mt-3"
+                            style={{ borderRadius:25}}
+                            placeholder="Пароль"
+                            type={"password"}
+                        />
+                    </Form.Group>
                     <Row className="d-flex justify-content-between mt-3 pl-3 pr-3">
                         {isLogin ?
                             <div>
@@ -45,8 +90,10 @@ const Auth = ({show, onHide}) =>  {
                                 Есть аккаунт? <NavLink to={LOGIN_ROUTE}>Войдите</NavLink>
                             </div>
                         }
-                       <Row className = "justify-content-center"> <Button className= "mt-5 mb-4"
+                       <Row className = "justify-content-center">
+                           <Button type="submit" className= "mt-5 mb-4"
                                 style={{backgroundColor:"#4985FF", borderRadius:25, width: 250}}
+                                   onClick={click}
                         >
                             {isLogin ? 'Войти': 'Регистрация'}
                         </Button>

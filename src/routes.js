@@ -1,17 +1,19 @@
 import {
     ADMIN_ROUTE,
-    COURSE_ROUTE, FEEDBACK_ROUTE,
+    COURSE_ROUTE, EDIT_COURSES, EDIT_REVIEW, EDIT_SCHOOLS,
     HOME_ROUTE,
     LOGIN_ROUTE,
     REGISTRATION_ROUTE,
     REVIEWS_ROUTE
 } from "./utils/consts";
 import Admin from "./pages/Admin";
-import Auth from "./components/Auth";
+import Auth from "./pages/Auth";
 import Course from "./pages/Course";
 import Reviews from "./pages/Reviews";
 import Home from "./pages/Home";
-import Feedback from "./pages/Feedback";
+import Edit_Courses from "./pages/Edit_Courses";
+import Edit_Schools from "./pages/Edit_Schools";
+import Edit_Review from "./pages/Edit_Review";
 
 export const authRoutes =[
     {
@@ -44,8 +46,16 @@ export const publicRoutes = [
         Component: Reviews
     },
     {
-        path: FEEDBACK_ROUTE,
-        Component: Feedback
+        path: EDIT_COURSES,
+        Component: Edit_Courses
+    },
+    {
+        path:EDIT_SCHOOLS,
+        Component: Edit_Schools
+    },
+    {
+        path:EDIT_REVIEW,
+        Component: Edit_Review
     }
 
 ]

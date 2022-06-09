@@ -1,24 +1,29 @@
-import React, {useContext, useEffect, useRef, useState} from 'react'
-import {Card, Col, Container, ListGroup, NavLink} from "react-bootstrap";
+import React, { useEffect, useState} from 'react'
+import {Card, Col, Container, NavLink, Pagination} from "react-bootstrap";
 import Row from "react-bootstrap/Row";
-import {fetchAcademy, fetchOneCategory} from "../http/reviewAPI";
+import {fetchOneCategory} from "../http/reviewAPI";
 import {useHistory, useParams} from "react-router-dom";
 import academy_img from "../assets/academy_skillbox.svg";
 import {REVIEWS_ROUTE} from "../utils/consts";
+import axios from "axios";
+import FooterPage from "../components/FooterPage";
 
-function declOfNum(number, words) {
-    return words[(number % 100 > 4 && number % 100 < 20) ? 2 : [2, 0, 1, 1, 1, 2][(number % 10 < 5) ? Math.abs(number) % 10 : 5]];
-}
-
-const Course = () => {
+const Course = (props) => {
     const history = useHistory()
     const [academic, setAcademic] = useState({content:[{classes:[]}]})
     const [category, setCategory] = useState({category:{}, classes:[]})
     const {id} = useParams()
     const [didMount, setDidMount] = useState(false);
+    const [page] = useState(
+        parseInt(props.location.search?.split("=")[1] || 1)
+    );
+    const sklonenie = (number, txt, cases = [2, 0, 1, 1, 1, 2]) =>
+        txt[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
     const x = (item) =>{
+
         let content = category.classes.find(i => i.id===item)
-        if (content === undefined) {return 0}
+        if (content === undefined || content === null) {return null}
+
         return(
             <Col>
                 <Row>
@@ -29,9 +34,9 @@ const Course = () => {
                     </NavLink>
                 </Row>
                 <Row className={"course_name "} >
-                    <Col  lg={5} >Срок прохождения: {content.term}</Col>
-                    <Col  lg={5} > Цена: {content.price}руб.</Col>
-                    <Col >{content.countOfReviews} {declOfNum( 1, ['Отзыв', 'Отзыва', 'Отзывов'])}</Col>
+                    <Col  lg={5} >Срок прохождения: {content.term}мес.</Col>
+                    <Col  lg={5} > Цена: {content.price} руб.</Col>
+                    <Col >{content.countOfReviews} {sklonenie(content.countOfReviews, [' Отзыв', ' Отзыва', ' Отзывов'])}</Col>
                 </Row>
             </Col>
            )
@@ -39,12 +44,13 @@ const Course = () => {
     useEffect(() =>{
         setDidMount(true);
             fetchOneCategory(id).then(data => setCategory(data))
-            fetchAcademy(id).then(data => setAcademic(data))
+            axios.get('http://192.168.99.100:8080/api/academy/page/' + id +`?page=0&size=2`).then(({ data }) => {
+                setAcademic(data);
 
-        return () => {
-            setDidMount(false);
-        }
-    }, [])
+            });
+        }, [page, props.history]);
+
+
 
     if(!didMount) {
         return null;
@@ -56,7 +62,7 @@ const Course = () => {
 
     <Col className={"mr-3"}>
       <p className = {"text_4"} key={category.category.id}>{category.category.name}</p>
-        <p className = {"count_classes"}> Найдено {category.category.countOfClasses} курсов</p>
+        <p className = {"count_classes"}> Найдено курсов: {category.category.countOfClasses}</p>
     </Col>
     <Col>
         {academic.content.map(item =>
@@ -82,9 +88,15 @@ const Course = () => {
         </Card>
         </div>
         )}
-    </Col>
+        <Row className={"mt-5 justify-content-center"}>
+        <Col className={"mt-5 justify-content-center"}>
+        </Col>
+        </Row>
+    </Col >
+
   </Container>
   )
+
 }
 
 export default Course

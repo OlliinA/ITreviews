@@ -71,10 +71,10 @@ const CourseDirections = observer(() => {
                         .map(section =>
                             <Card className='h-100 w-80 ml-md-2 align-items-center' style={{backgroundColor:"#747FE5",marginLeft: "auto",
                                 marginRight:"auto",  borderRadius: 25}}>
-                                <img style={{ width: 70, height: 70}} src={language} alt="language" className='card_img mt-2'/>
+                                <img style={{ width: 70, height: 70}} src={language} alt="language" className='card_img ' style={{ paddingTop:40}}/>
                                 <div className='card_text_title '> {section.section.name} </div>
                                 <div className='card-body'>
-                                    <Carousel slide={false} style={{paddingLeft:50, paddingRight:50, paddingBottom: 50, paddingTop:20}} >
+                                    <Carousel interval= {1000000} slide={false} style={{paddingLeft:50, paddingRight:50, paddingBottom: 50, paddingTop:5}} >
                                         <Carousel.Item >
                                             {getCategories(section, history)}
                                         </Carousel.Item>
@@ -116,7 +116,7 @@ const CourseDirections = observer(() => {
                                 <img style={{ width: 70, height: 70}} src={directrions} alt="directrions" className='card_img mt-2'/>
                                 <div className='card_text_title '> {section.section.name} </div>
                                 <div className='card-body'>
-                                    <Carousel slide={false} style={{paddingLeft:40, paddingRight:50, paddingBottom: 50, paddingTop:20}} >
+                                    <Carousel interval= {1000000} slide={false} style={{paddingLeft:40, paddingRight:50, paddingBottom: 50, paddingTop:20}} >
                                         <Carousel.Item>
                                             {getCategories(section, history)}
                                         </Carousel.Item>

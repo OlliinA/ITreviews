@@ -1,28 +1,29 @@
-import React, {useContext, useEffect, useRef, useState} from 'react';
-import {Context} from "../index";
+import React, { useEffect, useState} from 'react';
 import {Card, Col, Container, Image, ListGroup, NavLink} from "react-bootstrap";
 import Row from "react-bootstrap/Row";
-import {REVIEWS_ROUTE} from "../utils/consts";
 import {useParams} from "react-router-dom";
-import {fetchAcademy, fetchOneCategory, fetchReview} from "../http/reviewAPI";
+import {fetchReview} from "../http/reviewAPI";
 import people from "../assets/people.svg";
-import time from "../assets/time.svg";
-import star from "../assets/Star.svg";
+import { faClock } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ReactStarsRating from 'react-awesome-stars-rating';
 
 const Reviews = () => {
     const [review, setReview] = useState({classDto:{}, reviews:[]})
     const {id} = useParams()
+    const [rating, setRating] = useState(0)
     useEffect(() =>{
-
         fetchReview(id).then(data => setReview(data))
-
     }, [])
+
+    const sklonenie = (number, txt, cases = [2, 0, 1, 1, 1, 2]) =>
+        txt[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
 
     return (
         <Container className={"mt-4 "} >
             <Col className={"mr-3"}>
                 <p className = {"text_4"} key={review.classDto.id}>{review.classDto.name}</p>
-                <p className = {"count_classes"}> {review.classDto.countOfReviews} отзыва</p>
+                <p className = {"count_classes"}> {review.classDto.countOfReviews} {sklonenie(review.classDto.countOfReviews, [' Отзыв', ' Отзыва', ' Отзывов'])}</p>
             </Col>
             <Col>
                 {review.reviews.map( item =>
@@ -34,18 +35,17 @@ const Reviews = () => {
                                         <img className={"ml-5"} style={{ width: 55, height: 55}} src={people} alt="people_img"/>
                                     </Col>
                                     <Col>
-                                        <Row className = {"mt-3  name_user"}>{item.userNickname} </Row>
+                                        <Row className = {"mt-3  name_user"}>{item.username} </Row>
                                     </Col>
-                                    <Col lg={2}>
+                                    <Col lg={2} >
                                         <Row className = {"mt-3"}>
-                                            <Col lg={3}><img style={{ height: 29}} src={time} alt="time_img"/></Col>
-                                            <Col lg={8} className = {"mt-1 text_review"}>{item.beginDate}</Col>
+                                            <Col lg={1} > <FontAwesomeIcon icon={faClock} style={{color: 'gray', fontSize: '20px', marginTop: 3}}/></Col>
+                                            <Col lg={9}  className = {"mt-1 text_review"}>{item.beginDate}</Col>
                                         </Row>
                                     </Col>
                                     <Col>
                                         <Row className = {"mt-3 text_review"}>
-                                        <Col lg={1} className={"mt-1 ml-4"}>{item.mark}</Col>
-                                        <Col ><img  style={{ marginTop:5, height: 18}} src={star} alt="star_img"/></Col>
+                                        <Col><ReactStarsRating  value={item.mark} isEdit={false} primaryColor={'blue'} size={20} /></Col>
                                     </Row></Col>
                                 </Row>
                                 <div className={"line ml-5 sm-ml-4 mb-4"}/>
